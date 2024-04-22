@@ -1,21 +1,23 @@
 package cwk4;
 
-public abstract class Champion {
+import java.io.Serializable;
+
+public abstract class Champion implements Serializable {
 
     private String name;
-    private int championID;
+    private int  championID;
     private int skillLevel;
     private ChampionState state;
     private static int nextChampID = 0;
 
     /** constructor
-     * @param name - name of the champion
-     * @param skillLevel - skill level of the champion
+     * @param nme - name of the champion
+     * @param skill - skill level of the champion
      */
-    public Champion(String name, int skillLevel)
+    public Champion(String nme, int skill)
     {
-        this.name = name;
-        this.skillLevel = skillLevel;
+        this.name = nme;
+        this.skillLevel = skill;
         this.state = ChampionState.WAITING;
         this.championID = nextChampID;
         nextChampID ++;
@@ -53,6 +55,23 @@ public abstract class Champion {
         return state;
     }
 
+    /** Sets champion's current state
+     * @return champion state
+     */
+    public void setState(ChampionState st)
+    {
+        this.state = st;
+    }
+
+    /** Returns the champion's entry fee
+     * @return integer
+     */
+    public abstract int getEntryFee();
+
+    /** Returns true if champion can meet a challenge of certain type
+     * @return boolean
+     */
+    public abstract boolean canFight(ChallengeType type);
 
     /** Checks whether champion is skilled enough to win the challange
      * @param requirement - skill level of the enemy
