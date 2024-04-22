@@ -7,19 +7,20 @@ package cwk4;
  * @version (a version number or a date) add subclass necromancer
  */
 public class Wizard extends Champion {
-    private String specialitySpell;
-    private boolean isNecromancer;
+    private final String specialitySpell;
+    private final boolean isNecromancer;
     private final int entryFee;
 
     /** constructor
-     * @param name - name of the wizard
+     * @param nme - name of the wizard
      * @param skill - skill level
-     * @param isNecromancer - true if the wizard is also a necromancer
+     * @param fee - fee amount
+     * @param isNecro - true if the wizard is also a necromancer
      * @param spell - the name of the speciality spell
      */
-    public Wizard(String name, int skill, boolean isNecromancer, String spell)
+    public Wizard(String nme, int skill, boolean isNecromancer, String spell)
     {
-        super(name, skill);
+        super(nme, skill);
         this.isNecromancer = isNecromancer;
         this.specialitySpell = spell;
         this.entryFee = calculateEntryFee();
@@ -37,6 +38,16 @@ public class Wizard extends Champion {
         }else{
             return 300;
         }
+    }
+
+    @Override
+    public boolean canFight(ChallengeType challenge) {
+        return true;
+    }
+
+    @Override
+    public int getEntryFee() {
+        return entryFee;
     }
 
     @Override
