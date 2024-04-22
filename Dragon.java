@@ -5,16 +5,31 @@ public class Dragon extends Champion{
     private final int entryFee;
 
     /** constructor
-     * @param name - name of the dragon
-     * @param canTalk - boolean to indicate whether the dragon can talk
+     * @param nme - name of the dragon
+     * @param talk - boolean to indicate whether the dragon can talk
      */
-    public Dragon(String name, boolean canTalk)
+    public Dragon(String nme, boolean canTalk)
     {
-        super(name, 7);
+        super(nme, 7);
         this.canTalk = canTalk;
         this.entryFee = 500;
     }
 
+    @Override
+    public boolean canFight(ChallengeType type) {
+        if (type == ChallengeType.FIGHT){
+            return true;
+        }else if (type == ChallengeType.MYSTERY && this.canTalk){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
+    public int getEntryFee() {
+        return entryFee;
+    }
 
     @Override
     /** Implements toString from Champion class
