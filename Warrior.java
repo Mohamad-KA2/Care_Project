@@ -11,13 +11,13 @@ public class Warrior extends Champion {
     private final int entryFee;
 
     /** constructor
-     * @param name - name of the warrior
+     * @param nme - name of the warrior
      * @param skill - skill level
      * @param weapon - the name of the preferred weapon
      */
-    public Warrior(String name, int skill, String weapon)
+    public Warrior(String nme, int skill, String weapon)
     {
-        super(name, skill);
+        super(nme, skill);
         this.weapon = weapon;
         this.entryFee = calculateEntryFee();
     }
@@ -30,6 +30,20 @@ public class Warrior extends Champion {
     {
         int fee = super.getSkillLvl() * 100;
         return fee;
+    }
+
+    @Override
+    public int getEntryFee() {
+        return entryFee;
+    }
+
+    @Override
+    public boolean canFight(ChallengeType type) {
+        if (type == ChallengeType.FIGHT)
+        {
+            return true;
+        }else{
+        return false;}
     }
 
     @Override
