@@ -1,4 +1,5 @@
 package cwk4;
+
 import java.util.ArrayList;
 
 
@@ -10,22 +11,24 @@ public class Vizier{
     private boolean isTreasuryInDebt;
 
     public Vizier (String name){
-       this.name = name;
-       hasChampions = false;
-       isTreasuryInDebt = false;
+        this.name = name;
+        hasChampions = false;
+        isTreasuryInDebt = false;
     }
 
     public int getTreasury(){
         return treasury;
     }
 
-    public String viewReserveList(){
-        String s = "";
-        for (Champion champion : Tournament.reserveList) {
-            s += champion.toString();
-        }
-        return s;
+    public void addReward(int num){
+        this.treasury += num;
     }
+
+    public void payReward(int num){
+        this.treasury -= num;
+    }
+
+
 
     public String getVizierName(){
         return name;
@@ -60,23 +63,21 @@ public class Vizier{
         return treasury < 0;
     }
 
-    public int addChampionToTeam(Champion champion){
-        if (hasChampion(champion)){
-            return 0;
-        }
-        if (!team.inReserve(champion)) {
-            return -1;
-        }
-        if (treasury < champion.getEntryFree()){
-            return 2;
-        }
-
-        treasury -= Champion.getEntryFee;
-
-        team.add(champion);
-
-        return 0;
+    public void addChampion(Champion c){
+        team.add(c);
     }
+
+    public void removeChampion(Champion c){
+        team.remove(c);
+        int gold = c.getEntryFee()/2;
+        treasury += gold;
+    }
+
+    public ArrayList<Champion> getChamps(){
+        return team;
+    }
+
+
 
     public String toString(){
         return "Vizier name: " + getVizierName() +
