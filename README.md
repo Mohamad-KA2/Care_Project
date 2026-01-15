@@ -14,9 +14,9 @@ CARE (Champions Arena) is a strategy game where players:
 
 ```
 CW4-Java/
-├── src/main/java/cwk4/          # Main source code
-│   ├── Tournament.java          # Main game implementation
-│   ├── Champion.java            # Abstract champion class
+├── src/main/java/cwk4/         # Main source code
+│   ├── Tournament.java         # Main game implementation
+│   ├── Champion.java           # Abstract champion class
 │   ├── Wizard.java             # Wizard champion type
 │   ├── Warrior.java            # Warrior champion type
 │   ├── Dragon.java             # Dragon champion type
